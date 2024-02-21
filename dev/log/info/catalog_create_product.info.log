@@ -1,0 +1,44 @@
+{"@time":"2024-02-21 12:22:20.564","level":"info","msg":"Success Connect DB"}
+{"@time":"2024-02-21 12:22:22.552","level":"info","msg":"Success Connect to Artemis"}
+{"@time":"2024-02-21 12:22:22.612","level":"info","msg":"Success Get Client Data"}
+{"@time":"2024-02-21 12:22:22.612","level":"info","msg":"Success to subscribe to queue:lino-msg-queue"}
+{"@time":"2024-02-21 12:22:22.612","level":"info","msg":"Success to subscribe to queue:thomas-msg-queue"}
+{"@time":"2024-02-21 12:23:24.187","level":"info","msg":"Success Store to DR-MSG"}
+{"@time":"2024-02-21 12:23:24.219","level":"info","msg":"Success Store Data to OutboundMessage"}
+{"@time":"2024-02-21 12:23:55.248","level":"info","msg":"Success Store to DR-MSG"}
+{"@time":"2024-02-21 12:23:55.251","level":"info","msg":"Success Store Data to OutboundMessage"}
+{"@time":"2024-02-21 12:24:32.941","level":"info","msg":"Success Store to DR-MSG"}
+{"@time":"2024-02-21 12:24:32.944","level":"info","msg":"Success Store Data to OutboundMessage"}
+{"@time":"2024-02-21 12:24:55.193","level":"info","msg":"Received signal to stop. Exiting..."}
+{"@time":"2024-02-21 15:37:46.850","level":"info","msg":"Success Connect DB"}
+{"@time":"2024-02-21 15:37:47.333","level":"info","msg":"Success Connect to Artemis"}
+{"@time":"2024-02-21 15:37:47.403","level":"info","msg":"Success Get Client Data"}
+{"@time":"2024-02-21 15:37:47.403","level":"info","msg":"Success to subscribe to queue:lino-msg-queue"}
+{"@time":"2024-02-21 15:37:47.404","level":"info","msg":"Success to subscribe to queue:thomas-msg-queue"}
+{"@time":"2024-02-21 15:38:12.174","level":"info","msg":"Success Store to DR-MSG"}
+{"@time":"2024-02-21 15:38:12.212","level":"info","msg":"Success Store Data to OutboundMessage"}
+{"@time":"2024-02-21 15:39:04.788","level":"info","msg":"Received signal to stop. Exiting..."}
+{"@time":"2024-02-21 15:41:29.007","level":"info","msg":"Success Connect DB"}
+{"@time":"2024-02-21 15:41:29.039","level":"info","msg":"Success Connect to Artemis"}
+{"@time":"2024-02-21 15:41:29.064","level":"info","msg":"Success Get Client Data"}
+{"@time":"2024-02-21 15:41:29.064","level":"info","msg":"Success to subscribe to queue:lino-msg-queue"}
+{"@time":"2024-02-21 15:41:29.064","level":"info","msg":"Success to subscribe to queue:thomas-msg-queue"}
+{"@time":"2024-02-21 15:41:43.001","level":"info","msg":"Success Store to DR-MSG"}
+{"@time":"2024-02-21 15:41:43.004","level":"info","msg":"Success Store Data to OutboundMessage"}
+{"@time":"2024-02-21 15:41:59.826","level":"info","msg":"Received signal to stop. Exiting..."}
+{"@time":"2024-02-21 15:42:38.100","level":"info","msg":"Success Connect DB"}
+{"@time":"2024-02-21 15:42:38.192","level":"info","msg":"Success Connect to Artemis"}
+{"@time":"2024-02-21 15:42:38.209","level":"info","msg":"Success Get Client Data"}
+{"@time":"2024-02-21 15:42:38.209","level":"info","msg":"Success to subscribe to queue:lino-msg-queue"}
+{"@time":"2024-02-21 15:42:38.209","level":"info","msg":"Success to subscribe to queue:thomas-msg-queue"}
+{"@time":"2024-02-21 15:42:49.062","level":"info","msg":"Success Store to DR-MSG"}
+{"@time":"2024-02-21 15:42:49.064","level":"info","msg":"Success Store Data to OutboundMessage"}
+{"@time":"2024-02-21 15:49:53.043","level":"info","msg":"Received signal to stop. Exiting..."}
+{"@time":"2024-02-21 16:08:32.325","level":"info","msg":"Success Connect DB"}
+{"@time":"2024-02-21 16:08:32.566","level":"info","msg":"Success Connect to Artemis"}
+{"@time":"2024-02-21 16:08:32.619","level":"info","msg":"Success Get Client Data"}
+{"@time":"2024-02-21 16:08:32.619","level":"info","msg":"Success to subscribe to queue:lino-msg-queue"}
+{"@time":"2024-02-21 16:08:32.619","level":"info","msg":"Success to subscribe to queue:thomas-msg-queue"}
+{"@time":"2024-02-21 16:08:57.090","level":"info","msg":"Success Store to DR-MSG"}
+{"@time":"2024-02-21 16:08:57.126","level":"info","msg":"Success Store Data to OutboundMessage"}
+{"@time":"2024-02-21 16:09:33.919","level":"info","msg":"Received signal to stop. Exiting..."}
