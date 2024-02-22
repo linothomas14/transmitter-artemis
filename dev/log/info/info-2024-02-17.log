@@ -1,6 +1,0 @@
-{"level":"info","msg":"Success Connect DB","time":"2024-02-17 11:47:39.605"}
-{"level":"info","msg":"Success Get Client Data","time":"2024-02-17 11:47:39.865"}
-{"level":"info","msg":"Success Connect to Artemis","time":"2024-02-17 11:47:40.222"}
-{"level":"info","msg":"Success to subscribe to queue:lino-msg-queue","time":"2024-02-17 11:47:40.223"}
-{"level":"info","msg":"Success to subscribe to queue:thomas-msg-queue","time":"2024-02-17 11:47:40.223"}
-{"level":"info","msg":"Received signal to stop. Exiting...","time":"2024-02-17 11:52:21.506"}

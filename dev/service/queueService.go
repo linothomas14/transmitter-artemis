@@ -62,12 +62,7 @@ func (qs *queueService) SendMessage(ctx context.Context, queueData []byte, clien
 	}
 	qs.logger.Infof(provider.AppLog, "Success Store to DR-MSG")
 
-	outboundMessage, err := FormatDataToOutboundMessage(queueData, msgRequest, responseFromMeta, drMsg)
-
-	if err != nil {
-		qs.logger.Errorf(provider.AppLog, "Cannot Transform Data to OutboundMessage")
-		return
-	}
+	outboundMessage := FormatDataToOutboundMessage(queueData, msgRequest, responseFromMeta, drMsg)
 
 	// Store to collection xx-outbound-msg (MongoDB)
 	err = qs.outboundRepo.Save(ctx, clientData, outboundMessage)
@@ -126,14 +121,11 @@ func FormatResponseToQueue(data dto.ResponseFromMeta, message_id string) string 
 	}
 }
 
-func FormatDataToOutboundMessage(queueData []byte, request dto.RequestToMeta, response dto.ResponseFromMeta, dr string) (entity.OutboundMessage, error) {
+func FormatDataToOutboundMessage(queueData []byte, request dto.RequestToMeta, response dto.ResponseFromMeta, dr string) entity.OutboundMessage {
 
 	var outboundMessage entity.OutboundMessage
 
-	valuesDR, err := url.ParseQuery(dr)
-	if err != nil {
-		return entity.OutboundMessage{}, err
-	}
+	valuesDR, _ := url.ParseQuery(dr)
 
 	wa_id := valuesDR.Get("wa_id")
 
@@ -142,10 +134,7 @@ func FormatDataToOutboundMessage(queueData []byte, request dto.RequestToMeta, re
 	}
 
 	queueData_string := string(queueData)
-	valuesQueueData, err := url.ParseQuery(queueData_string)
-	if err != nil {
-		return entity.OutboundMessage{}, err
-	}
+	valuesQueueData, _ := url.ParseQuery(queueData_string)
 
 	to := valuesQueueData.Get("to")
 	msg_id := valuesQueueData.Get("message_id")
@@ -159,5 +148,5 @@ func FormatDataToOutboundMessage(queueData []byte, request dto.RequestToMeta, re
 	outboundMessage.CreatedAt = time.Now()
 	outboundMessage.UpdatedAt = time.Now()
 
-	return outboundMessage, err
+	return outboundMessage
 }

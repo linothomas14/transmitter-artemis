@@ -1,7 +1,0 @@
-{"@time":"2024-02-21 12:23:23.035","level":"info","msg":"From lino-msg-queue, Received message: message_id=1\u0026to=6283872750005\u0026type=text\u0026text[preview_url]=false\u0026text[body]=Dari queue Lino"}
-{"@time":"2024-02-21 12:23:54.659","level":"info","msg":"From lino-msg-queue, Received message: message_id=1\u0026to=6283872750005\u0026type=text\u0026text[preview_url]=false\u0026text[body]=Dari queue Lino"}
-{"@time":"2024-02-21 12:24:32.582","level":"info","msg":"From lino-msg-queue, Received message: message_id=1\u0026to=6283872750001\u0026type=text\u0026text[preview_url]=false\u0026text[body]=Dari queue Lino"}
-{"@time":"2024-02-21 15:38:11.502","level":"info","msg":"From lino-msg-queue, Received message: invalid\u0026query\u0026string"}
-{"@time":"2024-02-21 15:41:42.642","level":"info","msg":"From lino-msg-queue, Received message: invalid\u0026query\u0026string"}
-{"@time":"2024-02-21 15:42:48.670","level":"info","msg":"From lino-msg-queue, Received message: sdasdwdad\u0026\u0026\u0026ajsdkajds"}
-{"@time":"2024-02-21 16:08:56.652","level":"info","msg":"From lino-msg-queue, Received message: invalid_query_string"}

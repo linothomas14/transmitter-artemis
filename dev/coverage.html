@@ -57,7 +57,7 @@
 				
 				<option value="file0">transmitter-artemis/service/clientDataService.go (100.0%)</option>
 				
-				<option value="file1">transmitter-artemis/service/queueService.go (79.7%)</option>
+				<option value="file1">transmitter-artemis/service/queueService.go (95.5%)</option>
 				
 				</select>
 			</div>
@@ -138,7 +138,7 @@ func (qs *queueService) SendMessage(ctx context.Context, queueData []byte, clien
         // from queue to json
         msgRequest, message_id, err := TransformToRequestBody(queueData)
 
-        if err != nil </span><span class="cov0" title="0">{
+        if err != nil </span><span class="cov8" title="1">{
                 qs.logger.Errorf(provider.AppLog, "Cant Parse Queue to Req Body")
                 return
         }</span>
@@ -155,22 +155,17 @@ func (qs *queueService) SendMessage(ctx context.Context, queueData []byte, clien
 
         // Store to DR xx-dr-msg (Artemis)
         err = qs.drRepo.Produce(ctx, clientData, drMsg)
-        if err != nil </span><span class="cov0" title="0">{
+        if err != nil </span><span class="cov8" title="1">{
                 qs.logger.Errorf(provider.AppLog, "Cannot Save to DR-queue Artemis")
                 return
         }</span>
         <span class="cov8" title="1">qs.logger.Infof(provider.AppLog, "Success Store to DR-MSG")
 
-        outboundMessage, err := FormatDataToOutboundMessage(queueData, msgRequest, responseFromMeta, drMsg)
-
-        if err != nil </span><span class="cov0" title="0">{
-                qs.logger.Errorf(provider.AppLog, "Cannot Transform Data to OutboundMessage")
-                return
-        }</span>
+        outboundMessage := FormatDataToOutboundMessage(queueData, msgRequest, responseFromMeta, drMsg)
 
         // Store to collection xx-outbound-msg (MongoDB)
-        <span class="cov8" title="1">err = qs.outboundRepo.Save(ctx, clientData, outboundMessage)
-        if err != nil </span><span class="cov0" title="0">{
+        err = qs.outboundRepo.Save(ctx, clientData, outboundMessage)
+        if err != nil </span><span class="cov8" title="1">{
                 qs.logger.Errorf(provider.AppLog, "Cannot Store to OutboundMessage")
                 return
         }</span>
@@ -185,7 +180,7 @@ func TransformToRequestBody(msg []byte) (dto.RequestToMeta, string, error) <span
         // Parse query string
         msgString := string(msg)
         values, err := url.ParseQuery(msgString)
-        if err != nil </span><span class="cov0" title="0">{
+        if err != nil </span><span class="cov8" title="1">{
                 fmt.Println(err)
                 return dto.RequestToMeta{}, "", err
         }</span>
@@ -225,28 +220,22 @@ func FormatResponseToQueue(data dto.ResponseFromMeta, message_id string) string 
         }</span>
 }
 
-func FormatDataToOutboundMessage(queueData []byte, request dto.RequestToMeta, response dto.ResponseFromMeta, dr string) (entity.OutboundMessage, error) <span class="cov8" title="1">{
+func FormatDataToOutboundMessage(queueData []byte, request dto.RequestToMeta, response dto.ResponseFromMeta, dr string) entity.OutboundMessage <span class="cov8" title="1">{
 
         var outboundMessage entity.OutboundMessage
 
-        valuesDR, err := url.ParseQuery(dr)
-        if err != nil </span><span class="cov0" title="0">{
-                return entity.OutboundMessage{}, err
-        }</span>
+        valuesDR, _ := url.ParseQuery(dr)
 
-        <span class="cov8" title="1">wa_id := valuesDR.Get("wa_id")
+        wa_id := valuesDR.Get("wa_id")
 
         if wa_id != "" </span><span class="cov8" title="1">{
                 outboundMessage.WAID = wa_id
         }</span>
 
         <span class="cov8" title="1">queueData_string := string(queueData)
-        valuesQueueData, err := url.ParseQuery(queueData_string)
-        if err != nil </span><span class="cov0" title="0">{
-                return entity.OutboundMessage{}, err
-        }</span>
+        valuesQueueData, _ := url.ParseQuery(queueData_string)
 
-        <span class="cov8" title="1">to := valuesQueueData.Get("to")
+        to := valuesQueueData.Get("to")
         msg_id := valuesQueueData.Get("message_id")
 
         outboundMessage.To = to
@@ -258,7 +247,7 @@ func FormatDataToOutboundMessage(queueData []byte, request dto.RequestToMeta, re
         outboundMessage.CreatedAt = time.Now()
         outboundMessage.UpdatedAt = time.Now()
 
-        return outboundMessage, err</span>
+        return outboundMessage</span>
 }
 </pre>
 		

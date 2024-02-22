@@ -29,5 +29,6 @@ func (drRep *drRepository) Produce(ctx context.Context, clientData entity.Client
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
