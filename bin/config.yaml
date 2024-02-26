@@ -1,0 +1,25 @@
+artemis:
+  host: localhost
+  port: 61616
+  username: root
+  password: root
+  outboundQueueTopic: outbound-queue
+
+mongodb:
+  host: localhost
+  port: 27017
+  username: admin
+  password: admin
+  database: latihan-transmitter
+  # maxPoolSize: 10
+  # connectTimeout: 5
+  authSource: admin
+
+logger:
+  dir: log                                  # DO NOT EDIT!
+  file_name: catalog_create_product
+  max_backups: 0                            # set 0 for unlimited backups
+  max_size: 10                              # in mb
+  max_age: 90                               # in days, set 0 for unlimited days
+  compress: true
+  local_time: true

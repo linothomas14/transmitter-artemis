@@ -57,7 +57,7 @@
 				
 				<option value="file0">transmitter-artemis/service/clientDataService.go (100.0%)</option>
 				
-				<option value="file1">transmitter-artemis/service/queueService.go (95.5%)</option>
+				<option value="file1">transmitter-artemis/service/queueService.go (100.0%)</option>
 				
 				</select>
 			</div>
@@ -139,7 +139,7 @@ func (qs *queueService) SendMessage(ctx context.Context, queueData []byte, clien
         msgRequest, message_id, err := TransformToRequestBody(queueData)
 
         if err != nil </span><span class="cov8" title="1">{
-                qs.logger.Errorf(provider.AppLog, "Cant Parse Queue to Req Body")
+                qs.logger.Errorf(provider.AppLog, fmt.Sprintf("Cant Parse Queue to Req Body, %v", err.Error()))
                 return
         }</span>
 
@@ -181,7 +181,6 @@ func TransformToRequestBody(msg []byte) (dto.RequestToMeta, string, error) <span
         msgString := string(msg)
         values, err := url.ParseQuery(msgString)
         if err != nil </span><span class="cov8" title="1">{
-                fmt.Println(err)
                 return dto.RequestToMeta{}, "", err
         }</span>
         // Construct Queue from query parameters
@@ -213,7 +212,7 @@ func FormatResponseToQueue(data dto.ResponseFromMeta, message_id string) string 
                 drStatus := "sent"
                 queueString := fmt.Sprintf("message_id=%s&amp;wa_id=%s&amp;deliverystatus=%s&amp;time=%v", message_id, data.Messages[0].ID, drStatus, timeNow)
                 return queueString
-        }</span> else<span class="cov0" title="0"> {
+        }</span> else<span class="cov8" title="1"> {
                 drStatus := "failed"
                 queueString := fmt.Sprintf("message_id=%s&amp;deliverystatus=%s&amp;error[code]=%d&amp;error[detail]=%v&amp;time=%v", message_id, drStatus, data.Error.Code, data.Error.Message, timeNow)
                 return queueString

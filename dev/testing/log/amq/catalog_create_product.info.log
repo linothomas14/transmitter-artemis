@@ -1,0 +1,3 @@
+{"@time":"2024-02-26 10:09:33.461","level":"info","msg":"From test-client-a-msg-queue, Received message: message_id=1\u0026to=valid_phone_number_id\u0026type=text\u0026text[preview_url]=false\u0026text[body]=contoh Pesan"}
+{"@time":"2024-02-26 10:10:14.982","level":"info","msg":"From test-client-a-msg-queue, Received message: message_id=1\u0026to=valid_phone_number_id\u0026type=text\u0026text[preview_url]=false\u0026text[body]=contoh Pesan"}
+{"@time":"2024-02-26 10:22:01.395","level":"info","msg":"From test-client-a-msg-queue, Received message: message_id=1\u0026to=valid_phone_number_id\u0026type=text\u0026text[preview_url]=false\u0026text[body]=contoh Pesan"}

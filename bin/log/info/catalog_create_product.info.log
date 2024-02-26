@@ -1,0 +1,8 @@
+{"@time":"2024-02-23 08:53:24.592","level":"info","msg":"Success Connect DB"}
+{"@time":"2024-02-23 08:53:25.689","level":"info","msg":"Success Connect to Artemis"}
+{"@time":"2024-02-23 08:53:25.789","level":"info","msg":"Success Get Client Data"}
+{"@time":"2024-02-23 08:53:25.790","level":"info","msg":"Success to subscribe to queue:test-client-a-msg-queue"}
+{"@time":"2024-02-23 08:53:25.790","level":"info","msg":"Success to subscribe to queue:lino-msg-queue"}
+{"@time":"2024-02-23 08:54:36.099","level":"info","msg":"Success Store to DR-MSG"}
+{"@time":"2024-02-23 08:54:36.131","level":"info","msg":"Success Store Data to OutboundMessage"}
+{"@time":"2024-02-23 08:58:56.056","level":"info","msg":"Received signal to stop. Exiting..."}

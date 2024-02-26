@@ -62,13 +62,16 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	for _, clientData := range clients {
-		go func(ctx context.Context, clientData entity.ClientData) {
-			// Membuat listener untuk queue
-			listener := consumer.NewQueueListener(artemisConn, queueService, clientData, logger)
-			listener.Start(ctx)
-		}(ctx, clientData)
-	}
+	go func() {
+
+		for _, clientData := range clients {
+			go func(ctx context.Context, clientData entity.ClientData) {
+				// Membuat listener untuk queue
+				listener := consumer.NewQueueListener(artemisConn, queueService, clientData, logger)
+				listener.Start(ctx)
+			}(ctx, clientData)
+		}
+	}()
 
 	// Tunggu sampai aplikasi diberhentikan
 	waitForShutdown(logger)

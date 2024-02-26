@@ -40,7 +40,7 @@ func (qs *queueService) SendMessage(ctx context.Context, queueData []byte, clien
 	msgRequest, message_id, err := TransformToRequestBody(queueData)
 
 	if err != nil {
-		qs.logger.Errorf(provider.AppLog, "Cant Parse Queue to Req Body")
+		qs.logger.Errorf(provider.AppLog, fmt.Sprintf("Cant Parse Queue to Req Body, %v", err.Error()))
 		return
 	}
 
@@ -82,7 +82,6 @@ func TransformToRequestBody(msg []byte) (dto.RequestToMeta, string, error) {
 	msgString := string(msg)
 	values, err := url.ParseQuery(msgString)
 	if err != nil {
-		fmt.Println(err)
 		return dto.RequestToMeta{}, "", err
 	}
 	// Construct Queue from query parameters

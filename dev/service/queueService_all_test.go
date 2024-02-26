@@ -80,7 +80,8 @@ func TestSendMessage_all(t *testing.T) {
 
 	tests := []test{
 
-		{name: "Test Success SendMessage",
+		{
+			name:      "Test Success SendMessage",
 			msgString: "message_id=1&to=6283872750005&type=text&text[preview_url]=false&text[body]=Hello, this is a test message",
 			clientData: entity.ClientData{
 				ClientName:    "lino",
@@ -114,7 +115,8 @@ func TestSendMessage_all(t *testing.T) {
 				err: nil,
 			},
 		},
-		{name: "Test Failed SendMessage",
+		{
+			name:      "Test Failed SendMessage",
 			msgString: "message_id=1&to=6283872750005&type=text&text[preview_url]=false&text[body]=Hello, this is a test message",
 			clientData: entity.ClientData{
 				ClientName:    "lino",
