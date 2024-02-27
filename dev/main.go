@@ -30,6 +30,7 @@ func main() {
 
 	if err != nil {
 		logger.Errorf(provider.AppLog, "Error Connect DB")
+		return
 	}
 	logger.Infof(provider.AppLog, "Success Connect DB")
 
@@ -38,6 +39,7 @@ func main() {
 
 	if err != nil {
 		logger.Errorf(provider.AppLog, "Error Connect to Artemis")
+		return
 	}
 	logger.Infof(provider.AppLog, "Success Connect to Artemis")
 
