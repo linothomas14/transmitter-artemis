@@ -10,8 +10,8 @@ mongodb:
   username: admin
   password: admin
   database: latihan-transmitter
-  # maxPoolSize: 10
-  # connectTimeout: 5
+  maxPoolSize: 10
+  connectTimeout: 5
   authSource: admin
 
 logger:

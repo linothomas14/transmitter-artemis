@@ -18,5 +18,9 @@ func NewArtemis() (conn *stomp.Conn, err error) {
 		stomp.ConnOpt.Login(cfg.Username, cfg.Password),
 	)
 
-	return
+	if err != nil {
+		return nil, err
+	}
+
+	return conn, err
 }

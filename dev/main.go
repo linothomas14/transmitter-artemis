@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"os"
 	"os/signal"
@@ -26,10 +27,11 @@ func init() {
 func main() {
 	logger := provider.NewLogger()
 
+	logger.Infof(provider.AppLog, "Connecting to MongoDB ...")
 	mongodb, err := provider.NewMongoDBClient()
 
 	if err != nil {
-		logger.Errorf(provider.AppLog, "Error Connect DB")
+		logger.Errorf(provider.AppLog, fmt.Sprintf("Error Connect DB : %s", err))
 		return
 	}
 	logger.Infof(provider.AppLog, "Success Connect DB")
@@ -38,7 +40,7 @@ func main() {
 	artemisConn, err := provider.NewArtemis()
 
 	if err != nil {
-		logger.Errorf(provider.AppLog, "Error Connect to Artemis")
+		logger.Errorf(provider.AppLog, fmt.Sprintf("Error Connect Artemis : %s", err))
 		return
 	}
 	logger.Infof(provider.AppLog, "Success Connect to Artemis")
@@ -56,7 +58,8 @@ func main() {
 	clients, err := clientService.GetAllClientData()
 
 	if err != nil {
-		logger.Errorf(provider.AppLog, "Error Get Client data")
+		logger.Errorf(provider.AppLog, fmt.Sprintf("Error Get Client data : %s", err))
+		return
 	}
 	logger.Infof(provider.AppLog, "Success Get Client Data")
 

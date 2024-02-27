@@ -8,6 +8,7 @@ import (
 
 	"transmitter-artemis/config"
 
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -22,13 +23,22 @@ func NewMongoDBClient() (*mongo.Client, error) {
 	clientOptions := options.Client().ApplyURI(fmt.Sprintf("mongodb://%s:%s@%s:%d/?%s",
 		cfg.Username, cfg.Password, cfg.Host, cfg.Port, optionsStr))
 
+	clientOptions.MaxPoolSize = &cfg.MaxPoolSize
+	timeout := time.Duration(cfg.ConnectTimeout) * time.Second
+	clientOptions.ConnectTimeout = &timeout
+
 	// Connect to the MongoDB server
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
 
 	defer cancel()
 
 	client, err := mongo.Connect(ctx, clientOptions)
 	if err != nil {
+		return nil, err
+	}
+
+	var result bson.M
+	if err := client.Database("admin").RunCommand(context.TODO(), bson.D{{"ping", 1}}).Decode(&result); err != nil {
 		return nil, err
 	}
 

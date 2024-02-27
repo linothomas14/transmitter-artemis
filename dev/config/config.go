@@ -17,14 +17,14 @@ type Config struct {
 		Password string `mapstructure:"password"`
 	} `mapstructure:"artemis"`
 	MongoDB struct {
-		Host     string `mapstructure:"host"`
-		Port     int    `mapstructure:"port"`
-		Username string `mapstructure:"username"`
-		Password string `mapstructure:"password"`
-		Database string `mapstructure:"database"`
-		// MaxPoolSize    uint64 `mapstructure:"maxPoolSize"`
-		// ConnectTimeout uint   `mapstructure:"connectTimeout"`
-		AuthSource string `mapstructure:"authSource"`
+		Host           string `mapstructure:"host"`
+		Port           int    `mapstructure:"port"`
+		Username       string `mapstructure:"username"`
+		Password       string `mapstructure:"password"`
+		Database       string `mapstructure:"database"`
+		MaxPoolSize    uint64 `mapstructure:"maxPoolSize"`
+		ConnectTimeout uint   `mapstructure:"connectTimeout"`
+		AuthSource     string `mapstructure:"authSource"`
 	} `mapstructure:"mongodb"`
 	Logger struct {
 		Dir        string `mapstructure:"dir"`
