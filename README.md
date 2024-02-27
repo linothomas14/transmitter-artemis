@@ -53,7 +53,8 @@ db.client-info.insertOne({
 5. Verify that the application has subscribed to the appropriate queue (xxxxx-msg-queue) for the client with name *xxxxx*.
 
 ## Step 4: Send Test Message
-1. Send a test message to the **xxxxx-msg-queue queue**. Example message format:
+1. Send a test message to the **xxxxx-msg-queue queue**. 
+Example message format:
 ```plain
 message_id=1&to=6283872750005&type=text&text[preview_url]=false&text[body]=Hello world !!
 ```
