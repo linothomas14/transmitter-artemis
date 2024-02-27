@@ -37,7 +37,7 @@ This will start the application container using the Docker Compose file provided
 use transmitterdb
 ```
 4. Create a collection named **client-info** and insert a sample document:
-```json
+```bash
 db.client-info.insertOne({
   "token": "your-token",
   "client_name": "xxxxx",
