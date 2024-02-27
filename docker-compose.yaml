@@ -1,0 +1,5 @@
+version: '3.9'
+services:
+  transmitter-artemis:
+    build: ./bin
+    container_name: transmitter-artemis-lino
