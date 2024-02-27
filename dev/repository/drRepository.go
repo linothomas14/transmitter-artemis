@@ -6,6 +6,7 @@ import (
 	"transmitter-artemis/entity"
 
 	"github.com/go-stomp/stomp/v3"
+	"github.com/go-stomp/stomp/v3/frame"
 )
 
 type DRRepository interface {
@@ -25,7 +26,12 @@ func NewDRRepository(conn *stomp.Conn) *drRepository {
 func (drRep *drRepository) Produce(ctx context.Context, clientData entity.ClientData, drMsg string) error {
 	queueName := fmt.Sprintf("%s-dr-msg", clientData.ClientName)
 	contentType := "text/plain"
-	err := drRep.conn.Send(queueName, contentType, []byte(drMsg), stomp.SendOpt.Header("destication-type", "ANYCAST"))
+	headers := []func(*frame.Frame) error{
+		stomp.SendOpt.Header("destination-type", "ANYCAST"),
+		stomp.SendOpt.Header("persistent", "true"),
+	}
+	err := drRep.conn.Send(queueName, contentType, []byte(drMsg), headers...)
+
 	if err != nil {
 		return err
 	}

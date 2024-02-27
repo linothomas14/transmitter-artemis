@@ -11,11 +11,10 @@ var Configuration Config
 
 type Config struct {
 	Artemis struct {
-		Host               string `mapstructure:"host"`
-		Port               int    `mapstructure:"port"`
-		Username           string `mapstructure:"username"`
-		Password           string `mapstructure:"password"`
-		OutboundQueueTopic string `mapstructure:"outboundQueueTopic"`
+		Host     string `mapstructure:"host"`
+		Port     int    `mapstructure:"port"`
+		Username string `mapstructure:"username"`
+		Password string `mapstructure:"password"`
 	} `mapstructure:"artemis"`
 	MongoDB struct {
 		Host     string `mapstructure:"host"`

@@ -13,11 +13,11 @@ type ResponseFromMeta struct {
 }
 
 type ErrorRes struct {
-	Message   string      `json:"message,omitempty" bson:"message,omitempty"`
-	Type      string      `json:"type,omitempty" bson:"type,omitempty"`
-	Code      int         `json:"code,omitempty" bson:"code,omitempty"`
-	ErrorData interface{} `json:"error_data,omitempty" bson:"error_data,omitempty"`
-	FbTraceID string      `json:"fbtrace_id,omitempty" bson:"fb_trace_id,omitempty"`
+	Message   string                 `json:"message,omitempty" bson:"message,omitempty"`
+	Type      string                 `json:"type,omitempty" bson:"type,omitempty"`
+	Code      int                    `json:"code,omitempty" bson:"code,omitempty"`
+	ErrorData map[string]interface{} `json:"error_data,omitempty" bson:"error_data,omitempty"`
+	FbTraceID string                 `json:"fbtrace_id,omitempty" bson:"fb_trace_id,omitempty"`
 }
 
 type RequestToMeta struct {

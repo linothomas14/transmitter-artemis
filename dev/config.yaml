@@ -3,7 +3,6 @@ artemis:
   port: 61616
   username: root
   password: root
-  outboundQueueTopic: outbound-queue
 
 mongodb:
   host: localhost
@@ -17,7 +16,7 @@ mongodb:
 
 logger:
   dir: log                                  # DO NOT EDIT!
-  file_name: catalog_create_product
+  file_name: transmitter-artemis
   max_backups: 0                            # set 0 for unlimited backups
   max_size: 10                              # in mb
   max_age: 90                               # in days, set 0 for unlimited days

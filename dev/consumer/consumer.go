@@ -27,7 +27,9 @@ func NewQueueListener(conn *stomp.Conn, queueService service.QueueService, clien
 
 	queueName := fmt.Sprintf("%s-msg-queue", clientData.ClientName)
 
-	sub, err := conn.Subscribe(queueName, stomp.AckClientIndividual)
+	sub, err := conn.Subscribe(queueName, stomp.AckClientIndividual, stomp.SubscribeOpt.Header(
+		"subscription-type", "ANYCAST",
+	))
 	if err != nil {
 		logger.Errorf(provider.AppLog, "Failed to subscribe to queue:%s,error: %v", queueName, err)
 	}

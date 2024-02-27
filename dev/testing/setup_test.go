@@ -5,9 +5,6 @@ import (
 	"fmt"
 	"log"
 	"net/http/httptest"
-	"os"
-	"os/signal"
-	"syscall"
 	"testing"
 	"transmitter-artemis/config"
 	"transmitter-artemis/consumer"
@@ -27,6 +24,8 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
+
+const ConstClientName = "test-client-1"
 
 type testSvc struct {
 	suite.Suite
@@ -51,7 +50,6 @@ func (suite *testSvc) SetupSuite() {
 	suite.initArtemis()
 	suite.initMongoTest()
 	suite.initClientData()
-	// suite.insertQueue(suite.T(), "message_id=1&to=valid_phone_number_id&type=text&text[preview_url]=false&text[body]=contoh Pesan", "test-client-a-msg-queue")
 	suite.initAPP()
 }
 
@@ -63,17 +61,6 @@ func (suite *testSvc) loadConfig() {
 
 	provider.InitLogDir()
 }
-
-// func (s *testSvc) insertQueue(t *testing.T, queueData string, queueName string) {
-
-// 	contentType := "text/plain"
-// 	err := s.artemis.Send(queueName, contentType, []byte(queueData), stomp.SendOpt.Header("destination-type", "ANYCAST"), stomp.SendOpt.Header("persistent", "true"))
-// 	// fmt.Println("SEND MSG TO QUEUE DONE")
-
-// 	// fmt.Println(queueData)
-// 	fmt.Println("INSERT To queue name : ", queueName)
-// 	assert.NoError(t, err)
-// }
 
 func (suite *testSvc) initAPP() {
 
@@ -99,18 +86,6 @@ func (suite *testSvc) initAPP() {
 		}
 	}()
 
-	// waitForShutdown(suite.log)
-}
-
-func waitForShutdown(logger provider.ILogger) {
-	// Membuat channel untuk menerima sinyal
-	stop := make(chan os.Signal, 1)
-	signal.Notify(stop, syscall.SIGINT, syscall.SIGTERM)
-
-	// Menunggu sinyal untuk keluar
-	<-stop
-
-	logger.Infof(provider.AppLog, "Received signal to stop. Exiting...")
 }
 
 func (suite *testSvc) initMongoTest() {
@@ -133,19 +108,32 @@ func (suite *testSvc) initMongoTest() {
 
 func (suite *testSvc) initClientData() {
 	t := suite.T()
-	client := entity.ClientData{
-		ClientName:    "test-client-a",
-		Token:         "valid_token",
-		PhoneNumberID: "valid_phone_number_id",
-		WAHost:        suite.metaServer.URL,
+
+	docs := []interface{}{
+		entity.ClientData{
+			ClientName:    ConstClientName,
+			Token:         "valid_token",
+			PhoneNumberID: "valid_phone_number_id",
+			WAHost:        suite.metaServer.URL,
+		},
+		entity.ClientData{
+			ClientName:    "client-2",
+			Token:         "invalid_token",
+			PhoneNumberID: "valid_phone_number_id",
+			WAHost:        suite.metaServer.URL,
+		},
 	}
+
 	collName := "client-info"
 	coll := suite.mongoClient.Database(config.Configuration.MongoDB.Database).Collection(collName)
-	result, err := coll.InsertOne(context.TODO(), client)
+	result, err := coll.InsertMany(context.TODO(), docs)
 
 	assert.NoError(t, err)
 
-	fmt.Printf("Inserted document with _id: %v\n", result.InsertedID)
+	fmt.Printf("ClientData inserted: %v\n", len(result.InsertedIDs))
+	for _, id := range result.InsertedIDs {
+		fmt.Printf("Inserted CLientData with _id: %v\n", id)
+	}
 }
 
 func (suite *testSvc) initArtemis() {
